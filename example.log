@@ -1,0 +1,15 @@
+2026-01-11T19:41:12.312Z | INFO  | auth-service   | 4123 | User login successful | user_id=8421,ip=192.168.1.10
+2026-01-11T19:41:13.004Z | WARN  | auth-service   | 4123 | Invalid password attempt | user_id=8421,ip=192.168.1.10
+2026-01-11T19:41:14.552Z | INFO  | api-gateway    | 3099 | Request received | method=GET,path=/api/v1/items,status=200
+2026-01-11T19:41:14.559Z | DEBUG | api-gateway    | 3099 | Response sent | duration_ms=7
+2026-01-11T19:41:15.001Z | ERROR | payment-worker | 9981 | Payment processing failed | order_id=55012,error=timeout
+2026-01-11T19:41:15.019Z | INFO  | payment-worker | 9981 | Retrying payment | order_id=55012,attempt=2
+2026-01-11T19:41:16.888Z | INFO  | payment-worker | 9981 | Payment completed | order_id=55012,amount=79.99,currency=EUR
+2026-01-11T19:41:18.102Z | TRACE | cache-service  | 2011 | Cache lookup | key=session:8421,hit=true
+2026-01-11T19:41:18.103Z | TRACE | cache-service  | 2011 | Cache lookup | key=session:8421,hit=false
+2026-01-11T19:41:20.450Z | WARN  | api-gateway    | 3099 | Slow request detected | path=/api/v1/items,duration_ms=512
+2026-01-11T19:41:22.001Z | ERROR | db-service     | 1440 | Database connection lost | host=db01,retries=3
+2026-01-11T19:41:22.950Z | INFO  | db-service     | 1440 | Database reconnected | host=db01
+2026-01-11T19:41:25.733Z | INFO  | auth-service   | 4123 | User logout | user_id=8421
+2026-01-11T19:41:27.100Z | DEBUG | api-gateway    | 3099 | Request received | method=POST,path=/api/v1/orders,status=201
+2026-01-11T19:41:27.420Z | INFO  | api-gateway    | 3099 | Order created | order_id=55013,user_id=8421
