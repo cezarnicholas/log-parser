@@ -3,4 +3,3 @@
 /out/
 /cmake-build-*/
 /.cache/
-.clang-format
