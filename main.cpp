@@ -8,22 +8,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-void *mmap_file( std::filesystem::path file_name, size_t &length )
-{
-    int fd = open( file_name.c_str( ), O_RDONLY );
-    ensure( fd != -1, "file didn't open properly" );
-
-    struct stat st;
-    ensure( fstat( fd, &st ) != -1 && st.st_size != 0, "fstat failed / empty file" );
-
-    void *ptr = mmap( nullptr, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0 );
-    ensure( ptr != MAP_FAILED, "memory mapping failed" );
-    length = st.st_size;
-
-    close( fd );
-    return ptr;
-}
-
 int main( int argc, char *argv[] )
 {
     ensure( argc >= 2, "error! usage: {} log_file.log", argv[ 0 ] );
