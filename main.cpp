@@ -43,7 +43,8 @@ int main( int argc, char *argv[] )
             log_entry.service, 
             log_entry.process_id, 
             log_entry.message,
-            log_entry.metadata );
+            log_entry.metadata 
+        );
         // clang-format on
     }
 }
