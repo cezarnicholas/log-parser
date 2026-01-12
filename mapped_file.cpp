@@ -18,7 +18,7 @@ c_mapped_file::c_mapped_file( std::filesystem::path file_name )
     size_ = st.st_size;
     close( fd );
 
-    text = { static_cast< const char * >( ptr_ ), size_ };
+    text_ = { static_cast< const char * >( ptr_ ), size_ };
 }
 
 c_mapped_file::~c_mapped_file( )
@@ -29,11 +29,11 @@ c_mapped_file::~c_mapped_file( )
 
 // clang-format off
 c_mapped_file::c_mapped_file( c_mapped_file &&other ) noexcept : 
-    ptr_( other.ptr_ ), size_( other.size_ ), text( other.text ) 
+    ptr_( other.ptr_ ), size_( other.size_ ), text_( other.text_ ) 
 {
     other.ptr_ = nullptr;
     other.size_ = 0;
-    other.text = {};
+    other.text_ = {};
 }
 // clang-format on
 
@@ -45,11 +45,11 @@ c_mapped_file &c_mapped_file::operator=( c_mapped_file &&other ) noexcept
 
         ptr_ = other.ptr_;
         size_ = other.size_;
-        text = other.text;
+        text_ = other.text_;
 
         other.ptr_ = nullptr;
         other.size_ = 0;
-        other.text = { };
+        other.text_ = { };
     }
 
     return *this;
