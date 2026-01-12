@@ -107,8 +107,8 @@ namespace
     {
         if ( tokens.size( ) < 6 )
         {
-            const size_t kvs_start = logs.metadata_pool.size();
-            logs.metadata_ranges.push_back({kvs_start, kvs_start});
+            const size_t kvs_start = logs.metadata_pool.size( );
+            logs.metadata_ranges.push_back( { kvs_start, kvs_start } );
             std::println( "malformed line" );
             return { };
         }
@@ -162,7 +162,7 @@ parsed_logs_t parse_logs( std::string_view text )
         logs.entries[ i ] = tokens_to_log( tokens, logs );
     }
 
-    ensure(logs.metadata_ranges.size() == logs.entries.size(), "ranges desynced");
+    ensure( logs.metadata_ranges.size( ) == logs.entries.size( ), "ranges desynced" );
     for ( size_t i = 0; i < logs.entries.size( ); ++i )
     {
         log_entry_t &cur_entry = logs.entries[ i ];
