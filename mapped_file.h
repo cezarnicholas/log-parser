@@ -7,12 +7,12 @@ class c_mapped_file
 private:
     void *ptr_;
     size_t size_;
-    std::string_view text;
+    std::string_view text_;
 
 public:
     inline std::string_view contents( ) const noexcept
     {
-        return text;
+        return text_;
     }
     c_mapped_file( std::filesystem::path file_name );
     ~c_mapped_file( );
