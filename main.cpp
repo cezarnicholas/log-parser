@@ -1,4 +1,5 @@
 #include "log_parser.h"
+#include "mapped_file.h"
 #include "utils.h"
 #include <cerrno>
 #include <fcntl.h>
@@ -26,12 +27,10 @@ void *mmap_file( std::filesystem::path file_name, size_t &length )
 int main( int argc, char *argv[] )
 {
     ensure( argc >= 2, "error! usage: {} log_file.log", argv[ 0 ] );
-    size_t length;
-    void *file = mmap_file( argv[ 1 ], length );
 
-    std::string_view text = { static_cast< const char * >( file ), length };
+    c_mapped_file mapped_file( argv[ 1 ] );
 
-    parsed_logs_t logs = parse_logs( text );
+    parsed_logs_t logs = parse_logs( mapped_file.contents( ) );
 
     // do whatever
     for ( log_entry_t &log_entry : logs.entries )
@@ -47,6 +46,4 @@ int main( int argc, char *argv[] )
             log_entry.metadata );
         // clang-format on
     }
-
-    munmap( file, length );
 }
